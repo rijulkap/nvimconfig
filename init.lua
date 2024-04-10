@@ -29,6 +29,7 @@ vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.hidden = false
+vim.opt.clipboard = 'unnamedplus'
 
 -- Install Lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
