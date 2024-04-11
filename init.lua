@@ -459,7 +459,7 @@ vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>')
 
 vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
 
-vim.keymap.set('n', '<A-l>', function()
+vim.keymap.set('n', '<A-h>', function()
   vim.cmd 'normal gb'
   local curbufnr = vim.api.nvim_get_current_buf()
   local buflist = vim.api.nvim_list_bufs()
