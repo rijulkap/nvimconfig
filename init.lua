@@ -29,6 +29,7 @@ vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.hidden = true
+vim.opt.wrap = false
 vim.opt.clipboard = 'unnamedplus'
 
 -- Install Lazy
@@ -277,12 +278,13 @@ require('lazy').setup({
           end,
         },
         completion = { completeopt = 'menu,menuone,noinsert,noselect' },
+        preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<Enter>'] = cmp.mapping.confirm { select = true },
+          ['<C-Enter>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-l>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
