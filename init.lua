@@ -28,7 +28,7 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
-vim.opt.hidden = false
+vim.opt.hidden = true
 vim.opt.clipboard = 'unnamedplus'
 
 -- Install Lazy
@@ -276,14 +276,13 @@ require('lazy').setup({
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
-
+        completion = { completeopt = 'menu,menuone,noinsert,noselect' },
         mapping = cmp.mapping.preset.insert {
           ['<Tab>'] = cmp.mapping.select_next_item(),
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Enter>'] = cmp.mapping.confirm { select = true },
+          ['<Enter>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-l>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
@@ -389,7 +388,27 @@ require('lazy').setup({
       vim.fn['mkdp#util#install']()
     end,
   },
-  --
+  {
+    'akinsho/toggleterm.nvim',
+    version = '*',
+    opts = {
+      size = 20,
+      open_mapping = [[<c-t>]],
+      autochdir = true,
+      hide_numbers = true,
+      persist_mode = true,
+      direction = 'float',
+      close_on_exit = false,
+      shell = vim.o.shell,
+      auto_scroll = true,
+      float_opts = {
+        border = 'curved',
+      },
+      winbar = {
+        enabled = false,
+      },
+    },
+  },
   --ADD LAZY STUFF HERE
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
