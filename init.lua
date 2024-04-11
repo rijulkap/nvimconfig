@@ -284,7 +284,7 @@ require('lazy').setup({
           ['<S-Tab>'] = cmp.mapping.select_prev_item(),
           ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Enter>'] = cmp.mapping.confirm { select = true },
+          ['<Enter>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
           ['<C-l>'] = cmp.mapping(function()
             if luasnip.expand_or_locally_jumpable() then
@@ -456,6 +456,29 @@ vim.keymap.set('n', '<leader>x', '*``cgn', { desc = 'Replace word' })
 
 vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>')
+
+vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
+
+vim.keymap.set('n', '<A-l>', function()
+  vim.cmd 'normal gb'
+  local curbufnr = vim.api.nvim_get_current_buf()
+  local buflist = vim.api.nvim_list_bufs()
+  for _, bufnr in ipairs(buflist) do
+    if vim.bo[bufnr].buflisted and bufnr ~= curbufnr and (vim.fn.getbufvar(bufnr, 'bufpersist') ~= 1) then
+      vim.cmd('bd ' .. tostring(bufnr))
+    end
+  end
+end, { silent = true, desc = 'Jump back & close unused buffers' })
+
+vim.keymap.set('n', '<leader>b', function()
+  local curbufnr = vim.api.nvim_get_current_buf()
+  local buflist = vim.api.nvim_list_bufs()
+  for _, bufnr in ipairs(buflist) do
+    if vim.bo[bufnr].buflisted and bufnr ~= curbufnr and (vim.fn.getbufvar(bufnr, 'bufpersist') ~= 1) then
+      vim.cmd('bd ' .. tostring(bufnr))
+    end
+  end
+end, { silent = true, desc = 'Close unused buffers' })
 
 -- Add typst files
 vim.filetype.add {
