@@ -408,6 +408,10 @@ require('lazy').setup({
       },
     },
   },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    opts = {},
+  },
   --ADD LAZY STUFF HERE
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
