@@ -80,6 +80,7 @@ require('lazy').setup({
         ['<leader>l'] = { name = '[l]sp Stuff', _ = 'which_key_ignore' },
         ['<leader>x'] = { name = 'Highlight & Replace word(s)', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
+        ['<leader>b'] = { name = '[b]uffer menu', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -125,7 +126,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = 'Find existing buffers' })
 
       vim.keymap.set('n', '<leader>s/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -466,7 +467,7 @@ vim.keymap.set('n', '<A-h>', function()
   end
 end, { silent = true, desc = 'Jump back & close unused buffers' })
 
-vim.keymap.set('n', '<leader>b', function()
+vim.keymap.set('n', '<leader>bb', function()
   local curbufnr = vim.api.nvim_get_current_buf()
   local buflist = vim.api.nvim_list_bufs()
   for _, bufnr in ipairs(buflist) do
@@ -476,6 +477,9 @@ vim.keymap.set('n', '<leader>b', function()
   end
 end, { silent = true, desc = 'Close unused buffers' })
 
+vim.keymap.set('n', '<leader>bc', function()
+  vim.cmd 'bd'
+end, { silent = true, desc = 'Close buffers' })
 -- Add typst files
 vim.filetype.add {
   extension = {
