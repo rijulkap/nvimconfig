@@ -28,6 +28,29 @@ vim.opt.hidden = true
 vim.opt.wrap = false
 vim.opt.clipboard = 'unnamedplus'
 
+local diagnostics = {
+  BoldError = '',
+  Error = '',
+  BoldWarning = '',
+  Warning = '',
+  BoldInformation = '',
+  Information = '',
+  BoldQuestion = '',
+  Question = '',
+  BoldHint = '',
+  Hint = '󰌶',
+  Debug = '',
+  Trace = '✎',
+}
+
+vim.fn.sign_define('LspDiagnosticsSignError', { texthl = 'LspDiagnosticsSignError', text = diagnostics.BoldError, numhl = 'LspDiagnosticsSignError' })
+vim.fn.sign_define('LspDiagnosticsSignWarning', { texthl = 'LspDiagnosticsSignWarning', text = diagnostics.BoldWarning, numhl = 'LspDiagnosticsSignWarning' })
+vim.fn.sign_define('LspDiagnosticsSignHint', { texthl = 'LspDiagnosticsSignHint', text = diagnostics.BoldHint, numhl = 'LspDiagnosticsSignHint' })
+vim.fn.sign_define(
+  'LspDiagnosticsSignInformation',
+  { texthl = 'LspDiagnosticsSignInformation', text = diagnostics.BoldInformation, numhl = 'LspDiagnosticsSignInformation' }
+)
+
 local default_diagnostic_config = {
   virtual_text = false,
   underline = true,
@@ -37,8 +60,6 @@ local default_diagnostic_config = {
     style = 'minimal',
     border = 'rounded',
     source = 'always',
-    header = '',
-    prefix = '',
   },
 }
 
