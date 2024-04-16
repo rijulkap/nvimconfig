@@ -92,10 +92,10 @@ vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('TypstSettings', { clear = true }),
 })
 
-vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
+vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   callback = function()
-    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand("%") ~= "" and vim.bo.buftype == "" then
-      vim.api.nvim_command('silent update')
+    if vim.bo.modified and not vim.bo.readonly and vim.fn.expand '%' ~= '' and vim.bo.buftype == '' then
+      vim.api.nvim_command 'silent update'
     end
   end,
 })
@@ -105,19 +105,18 @@ local persistbuffer = function(bufnr)
   vim.fn.setbufvar(bufnr, 'bufpersist', 1)
 end
 
-vim.api.nvim_create_autocmd({"BufRead"}, {
-  group = vim.api.nvim_create_augroup("startup",
-		{
-  		clear = false
-		}),
-  pattern = {"*"},
+vim.api.nvim_create_autocmd({ 'BufRead' }, {
+  group = vim.api.nvim_create_augroup('startup', {
+    clear = false,
+  }),
+  pattern = { '*' },
   callback = function()
-    vim.api.nvim_create_autocmd({"InsertEnter","BufModifiedSet"}, {
+    vim.api.nvim_create_autocmd({ 'InsertEnter', 'BufModifiedSet' }, {
       buffer = 0,
       once = true,
       callback = function()
         persistbuffer()
-      end
+      end,
     })
-  end
+  end,
 })
