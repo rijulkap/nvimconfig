@@ -28,22 +28,6 @@ vim.opt.hidden = true
 vim.opt.wrap = false
 vim.opt.clipboard = 'unnamedplus'
 
-local default_diagnostic_config = {
-  virtual_text = false,
-  underline = true,
-  severity_sort = true,
-  float = {
-    focusable = false,
-    style = 'minimal',
-    border = 'rounded',
-    source = 'always',
-    header = '',
-    prefix = '',
-  },
-}
-
-vim.diagnostic.config(default_diagnostic_config)
-
 -- Install Lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
@@ -451,6 +435,27 @@ require('lazy').setup({
     },
   },
 })
+
+local default_diagnostic_config = {
+  virtual_text = false,
+  underline = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = 'minimal',
+    border = 'rounded',
+    source = 'always',
+    header = '',
+    prefix = '',
+  },
+}
+
+vim.diagnostic.config(default_diagnostic_config)
+
+vim.fn.sign_define('DiagnosticSignError', { text = '', texthl = 'DiagnosticSignError' })
+vim.fn.sign_define('DiagnosticSignWarn', { text = '', texthl = 'DiagnosticSignWarn' })
+vim.fn.sign_define('DiagnosticSignInfo', { text = '', texthl = 'DiagnosticSignInfo' })
+vim.fn.sign_define('DiagnosticSignHint', { text = '', texthl = 'DiagnosticSignHint' })
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
