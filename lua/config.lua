@@ -1,7 +1,6 @@
 require 'core.win_bootstrap'
 require 'core.autocmds'
 
-vim.g.have_nerd_font = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = 'a'
@@ -26,7 +25,9 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.hidden = true
 vim.opt.wrap = false
+vim.opt.showcmd = false
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.shortmess = 'I'
 
 -- Install Lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -325,14 +326,14 @@ require('lazy').setup({
       --  - va)  - [V]isually select [A]round [)]paren
       --  - yinq - [Y]ank [I]nside [N]ext [']quote
       --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      -- require('mini.ai').setup { n_lines = 500 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      -- require('mini.surround').setup()
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
 
@@ -347,6 +348,7 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
