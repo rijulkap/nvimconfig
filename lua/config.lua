@@ -49,7 +49,7 @@ local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
-end ---@diagnostic disable-next-line: undefined-field
+end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
@@ -355,7 +355,6 @@ require('lazy').setup({
       -- You can configure sections in the statusline by overriding their
       -- default behavior. For example, here we set the section for
       -- cursor location to LINE:COLUMN
-      ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
       end
@@ -458,14 +457,8 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', '<cmd>botright copen<CR>', { desc = 'Open [Q]uickfix list' })
 
-vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
-vim.keymap.set('n', '<bs>', "<c-^>'”zz", { silent = true, noremap = true })
 vim.keymap.set('n', 'H', '^', { silent = true, noremap = true })
 vim.keymap.set('n', 'L', '$', { silent = true, noremap = true })
 
@@ -475,6 +468,15 @@ vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>')
 
 vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
+
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
+vim.keymap.set('n', 'n', 'nzzzv')
+vim.keymap.set('n', 'N', 'Nzzzv')
+
+vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
+vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
 
 vim.keymap.set('n', '<A-h>', function()
   vim.cmd 'normal gb'
@@ -497,9 +499,8 @@ vim.keymap.set('n', '<leader>bb', function()
   end
 end, { silent = true, desc = 'Close unused buffers' })
 
-vim.keymap.set('n', '<leader>bc', function()
-  vim.cmd 'bd'
-end, { silent = true, desc = 'Close buffers' })
+vim.keymap.set('n', '<leader>bc', "<cmd>bd<CR>", { silent = true, desc = 'Close buffers' })
+
 -- Add typst files
 vim.filetype.add {
   extension = {
