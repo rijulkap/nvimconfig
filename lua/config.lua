@@ -474,6 +474,7 @@ vim.keymap.set('n', '<leader>x', '*``cgn', { desc = 'Replace word' })
 vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>')
 vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>')
 
+vim.keymap.set('n', '<C-o>', '<C-o>zz')
 vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
