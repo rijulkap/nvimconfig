@@ -28,6 +28,7 @@ vim.opt.wrap = false
 vim.opt.showcmd = false
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.shortmess = 'I'
+vim.opt.confirm = true
 
 -- Install Lazy
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
