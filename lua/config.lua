@@ -112,6 +112,7 @@ require('lazy').setup({
           },
         },
         defaults = {
+          path_display = { 'truncate' },
           mappings = {
             n = {
               ['<c-d>'] = require('telescope.actions').delete_buffer,
@@ -526,3 +527,5 @@ vim.filetype.add {
     typ = 'typst',
   },
 }
+
+vim.lsp.set_log_level 'off'
