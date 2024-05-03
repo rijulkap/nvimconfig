@@ -115,10 +115,10 @@ require('lazy').setup({
           path_display = { 'truncate' },
           mappings = {
             n = {
-              ['<c-d>'] = require('telescope.actions').delete_buffer,
+              ['<c-c>'] = require('telescope.actions').delete_buffer,
             }, -- n
             i = {
-              ['<c-d>'] = require('telescope.actions').delete_buffer,
+              ['<c-c>'] = require('telescope.actions').delete_buffer,
             }, -- i
           },
         },
