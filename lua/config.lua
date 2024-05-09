@@ -425,6 +425,16 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter-context',
     opts = {},
   },
+  {
+    'stevearc/oil.nvim',
+    opts = {},
+    -- Optional dependencies
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function(_, opts)
+      require('oil').setup(opts)
+      vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
+    end,
+  },
   --ADD LAZY STUFF HERE
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
