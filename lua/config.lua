@@ -171,7 +171,6 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      { 'j-hui/fidget.nvim', event = { 'BufReadPre', 'BufNewFile' }, opts = {} },
       { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
@@ -219,6 +218,7 @@ require('lazy').setup({
       }
     end,
   },
+  { 'j-hui/fidget.nvim', event = { 'BufReadPre', 'BufNewFile' }, opts = {} },
 
   { -- Autoformat
     'stevearc/conform.nvim',
