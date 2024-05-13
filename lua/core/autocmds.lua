@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  Similar to document symbols, except searches over your entire project.
     map('<leader>lw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[l]sp [W]orkspace Symbols')
 
-    map('<leader>lq', vim.diagnostic.setloclist, 'Open diagnostic [l]sp [q]uickfix list')
+    map('<leader>lq', vim.diagnostic.setqflist, 'Open diagnostic [l]sp [q]uickfix list')
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
     map('<leader>lr', vim.lsp.buf.rename, '[l]sp [R]ename')
