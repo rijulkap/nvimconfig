@@ -348,6 +348,12 @@ require('lazy').setup({
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
       -- require('mini.surround').setup()
+      --
+
+      require('mini.pairs').setup()
+      require('mini.starter').setup()
+      require('mini.move').setup()
+
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
 
@@ -495,9 +501,6 @@ vim.keymap.set('n', 'L', '$', { silent = true, noremap = true })
 
 vim.keymap.set('n', '<leader>x', '*``cgn', { desc = 'Replace word' })
 
-vim.keymap.set('n', '<A-j>', '<Esc>:m .+1<CR>')
-vim.keymap.set('n', '<A-k>', '<Esc>:m .-2<CR>')
-
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
 vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
 
@@ -510,16 +513,16 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
 
-vim.keymap.set('n', '<A-h>', function()
-  vim.cmd 'normal gb'
-  local curbufnr = vim.api.nvim_get_current_buf()
-  local buflist = vim.api.nvim_list_bufs()
-  for _, bufnr in ipairs(buflist) do
-    if vim.bo[bufnr].buflisted and bufnr ~= curbufnr and (vim.fn.getbufvar(bufnr, 'bufpersist') ~= 1) then
-      vim.cmd('bd ' .. tostring(bufnr))
-    end
-  end
-end, { silent = true, desc = 'Jump back & close unused buffers' })
+-- vim.keymap.set('n', '<A-h>', function()
+--   vim.cmd 'normal gb'
+--   local curbufnr = vim.api.nvim_get_current_buf()
+--   local buflist = vim.api.nvim_list_bufs()
+--   for _, bufnr in ipairs(buflist) do
+--     if vim.bo[bufnr].buflisted and bufnr ~= curbufnr and (vim.fn.getbufvar(bufnr, 'bufpersist') ~= 1) then
+--       vim.cmd('bd ' .. tostring(bufnr))
+--     end
+--   end
+-- end, { silent = true, desc = 'Jump back & close unused buffers' })
 
 vim.keymap.set('n', '<leader>bb', function()
   local curbufnr = vim.api.nvim_get_current_buf()
