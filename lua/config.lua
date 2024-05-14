@@ -369,7 +369,6 @@ require('lazy').setup({
       }
 
       require('mini.starter').setup(starterconfig)
-      require('mini.pairs').setup()
       require('mini.move').setup()
       require('mini.surround').setup()
 
@@ -386,6 +385,12 @@ require('lazy').setup({
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
+  },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    opts = {},
   },
 
   { -- Highlight, edit, and navigate code
