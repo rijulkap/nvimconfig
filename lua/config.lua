@@ -367,10 +367,11 @@ require('lazy').setup({
           starter.gen_hook.aligning('center', 'center'),
         },
       }
-      require('mini.starter').setup(starterconfig)
 
+      require('mini.starter').setup(starterconfig)
       require('mini.pairs').setup()
       require('mini.move').setup()
+      require('mini.surround').setup()
 
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = vim.g.have_nerd_font }
