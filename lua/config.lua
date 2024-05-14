@@ -336,22 +336,40 @@ require('lazy').setup({
   { -- Collection of various small independent plugins/modules
     'echasnovski/mini.nvim',
     config = function()
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [']quote
-      --  - ci'  - [C]hange [I]nside [']quote
-      -- require('mini.ai').setup { n_lines = 500 }
+      local logo = table.concat({
+        [[                                                ]],
+        [[                                          _.oo. ]],
+        [[                  _.u[[/;:,.         .odMMMMMM' ]],
+        [[               .o888UU[[[/;:-.  .o@P^    MMM^   ]],
+        [[              oN88888UU[[[/;::-.        dP^     ]],
+        [[             dNMMNN888UU[[[/;:--.   .o@P^       ]],
+        [[            ,MMMMMMN888UU[[/;::-. o@^           ]],
+        [[            NNMMMNN888UU[[[/~.o@P^              ]],
+        [[            888888888UU[[[/o@^-..               ]],
+        [[           oI8888UU[[[/o@P^:--..                ]],
+        [[        .@^  YUU[[[/o@^;::---..                 ]],
+        [[      oMP     ^/o@P^;:::---..                   ]],
+        [[   .dMMM    .o@^ ^;::---...                     ]],
+        [[  dMMMMMMM@^`       `^^^^                       ]],
+        [[ YMMMUP^                                        ]],
+        [[  ^^                                            ]],
+        [[                                                ]],
+      }, '\n')
+      local pad = string.rep(' ', 22)
 
-      -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      -- require('mini.surround').setup()
-      --
+      local starter = require 'mini.starter'
+
+      local starterconfig = {
+        evaluate_single = true,
+        header = logo,
+        content_hooks = {
+          starter.gen_hook.adding_bullet(pad .. '░ ', false),
+          starter.gen_hook.aligning('center', 'center'),
+        },
+      }
+      require('mini.starter').setup(starterconfig)
 
       require('mini.pairs').setup()
-      require('mini.starter').setup()
       require('mini.move').setup()
 
       local statusline = require 'mini.statusline'
