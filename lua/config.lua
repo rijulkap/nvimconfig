@@ -141,7 +141,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', function()
-        builtin.buffers { sort_mru = true }
+        builtin.buffers { sort_mru = true, ignore_current_buffer = true }
       end, { desc = 'Find existing buffers' })
 
       vim.keymap.set('n', '<leader>s/', function()
