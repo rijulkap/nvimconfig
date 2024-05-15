@@ -24,28 +24,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Jump to the definition of the word under your cursor.
     --  This is where a variable was first declared, or where a function is defined, etc.
     --  To jump back, press <C-t>.
-    map('gd', function()
-      require('telescope.builtin').lsp_definitions()
-      vim.cmd 'normal zz'
-    end, '[G]oto [D]efinition')
+    map('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
 
     -- Find references for the word under your cursor.
     map('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
 
     -- Jump to the implementation of the word under your cursor.
     --  Useful when your language has ways of declaring types without an actual implementation.
-    map('gI', function()
-      require('telescope.builtin').lsp_implementations()
-      vim.cmd 'nromal zz'
-    end, '[G]oto [I]mplementation')
+    map('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
     -- Jump to the type of the word under your cursor.
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
-    map('<leader>lD', function()
-      require('telescope.builtin').lsp_type_definitions()
-      vim.cmd 'normal zz'
-    end, '[l]sp Type [D]efinition')
+    map('<leader>lD', require('telescope.builtin').lsp_type_definitions, '[l]sp Type [D]efinition')
 
     -- Fuzzy find all the symbols in your current document.
     --  Symbols are things like variables, functions, types, etc.
@@ -55,7 +46,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  Similar to document symbols, except searches over your entire project.
     map('<leader>lw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[l]sp [W]orkspace Symbols')
 
-    map('<leader>lq', vim.diagnostic.setqflist, 'Open diagnostic [l]sp [q]uickfix list')
+    map('<leader>lq', vim.diagnostic.setloclist, 'Open diagnostic [l]sp [q]uickfix list')
+
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
     map('<leader>lr', vim.lsp.buf.rename, '[l]sp [R]ename')
@@ -70,10 +62,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- WARN: This is not Goto Definition, this is Goto Declaration.
     --  For example, in C this would take you to the header.
-    map('gD', function()
-      vim.lsp.buf.declaration()
-      vim.cmd 'normal zz'
-    end, '[G]oto [D]eclaration')
+    map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
