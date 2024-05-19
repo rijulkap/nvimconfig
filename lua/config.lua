@@ -54,8 +54,6 @@ require('lazy').setup({
     },
   },
 
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
@@ -302,11 +300,7 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+  {
     'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
@@ -355,21 +349,9 @@ require('lazy').setup({
       require('mini.starter').setup(starterconfig)
       require('mini.move').setup()
       require('mini.surround').setup()
-
-      local statusline = require 'mini.statusline'
-      statusline.setup { use_icons = vim.g.have_nerd_font }
-
-      -- You can configure sections in the statusline by overriding their
-      -- default behavior. For example, here we set the section for
-      -- cursor location to LINE:COLUMN
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-
-      -- ... and there is more!
-      --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
+
   {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
@@ -408,6 +390,7 @@ require('lazy').setup({
       vim.opt.foldlevelstart = 99
     end,
   },
+
   {
     'iamcco/markdown-preview.nvim',
     -- cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
@@ -416,6 +399,7 @@ require('lazy').setup({
       vim.fn['mkdp#util#install']()
     end,
   },
+
   {
     'akinsho/toggleterm.nvim',
     version = '*',
@@ -437,10 +421,12 @@ require('lazy').setup({
       },
     },
   },
+
   {
     'nvim-treesitter/nvim-treesitter-context',
     opts = {},
   },
+
   {
     'stevearc/oil.nvim',
     opts = {},
@@ -451,8 +437,53 @@ require('lazy').setup({
       vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
     end,
   },
-  --ADD LAZY STUFF HERE
-  -- require 'kickstart.plugins.debug',
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {
+      options = {
+        icons_enabled = true,
+        theme = 'auto',
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
+        disabled_filetypes = {
+          statusline = {},
+          winbar = {},
+        },
+        ignore_focus = {},
+        always_divide_middle = true,
+        globalstatus = false,
+        refresh = {
+          statusline = 1000,
+          tabline = 1000,
+          winbar = 1000,
+        },
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' },
+        lualine_c = { 'filename' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = { 'progress' },
+        lualine_z = { 'location' },
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = { 'filename' },
+        lualine_x = { 'location' },
+        lualine_y = {},
+        lualine_z = {},
+      },
+      tabline = {},
+      winbar = {},
+      inactive_winbar = {},
+      extensions = {},
+    },
+    config = function(_, opts)
+      require('lualine').setup(opts)
+    end,
+  },
   require 'kickstart.plugins.indent_line',
 }, {
   ui = {
@@ -520,17 +551,6 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
 vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
-
--- vim.keymap.set('n', '<A-h>', function()
---   vim.cmd 'normal gb'
---   local curbufnr = vim.api.nvim_get_current_buf()
---   local buflist = vim.api.nvim_list_bufs()
---   for _, bufnr in ipairs(buflist) do
---     if vim.bo[bufnr].buflisted and bufnr ~= curbufnr and (vim.fn.getbufvar(bufnr, 'bufpersist') ~= 1) then
---       vim.cmd('bd ' .. tostring(bufnr))
---     end
---   end
--- end, { silent = true, desc = 'Jump back & close unused buffers' })
 
 vim.keymap.set('n', '<leader>bb', function()
   local curbufnr = vim.api.nvim_get_current_buf()
