@@ -363,7 +363,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'cpp', 'python', 'rust', 'json', 'markdown', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'cpp', 'c_sharp', 'python', 'rust', 'json', 'markdown', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
       auto_install = true,
       highlight = {
         enable = true,
