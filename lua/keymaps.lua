@@ -11,7 +11,6 @@ vim.keymap.set('n', 'L', '$', { silent = true, noremap = true })
 vim.keymap.set('n', '<leader>x', '*``cgn', { desc = 'Replace word' })
 
 vim.keymap.set('n', '<C-o>', '<C-o>zz')
-vim.keymap.set('n', 'gb', '<C-o>', { desc = 'Jump to top of jumplist' })
 
 vim.keymap.set('n', '<C-d>', '<C-d>zz')
 vim.keymap.set('n', '<C-u>', '<C-u>zz')
@@ -32,4 +31,4 @@ vim.keymap.set('n', '<leader>bb', function()
   end
 end, { silent = true, desc = 'Close unused buffers' })
 
-vim.keymap.set('n', '<leader>bc', '<cmd>bd<CR>', { silent = true, desc = 'Close buffers' })
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { silent = true, desc = 'Close buffers' })
