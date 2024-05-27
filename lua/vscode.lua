@@ -1,5 +1,5 @@
 -- Add vscode specific thingys here
-require 'core.win_bootstrap'
+require 'win_bootstrap'
 
 vim.opt.clipboard = 'unnamedplus'
 
