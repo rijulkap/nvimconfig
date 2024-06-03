@@ -8,7 +8,6 @@ return {
       -- Document existing key chains
       require('which-key').register {
         ['<leader>l'] = { name = '[l]sp Stuff', _ = 'which_key_ignore' },
-        ['<leader>x'] = { name = 'Highlight & Replace word(s)', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>b'] = { name = '[b]uffer menu', _ = 'which_key_ignore' },
       }

@@ -17,6 +17,9 @@ return {
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+      local open_with_trouble = require('trouble.sources.telescope').open
+      -- local add_to_trouble = require('trouble.sources.telescope').add
+
       require('telescope').setup {
         extensions = {
           ['ui-select'] = {
@@ -28,9 +31,11 @@ return {
           mappings = {
             n = {
               ['<c-c>'] = require('telescope.actions').delete_buffer,
+              ['<c-t>'] = open_with_trouble,
             }, -- n
             i = {
               ['<c-c>'] = require('telescope.actions').delete_buffer,
+              ['<c-t>'] = open_with_trouble,
             }, -- i
           },
         },

@@ -43,6 +43,7 @@ return {
           starter.gen_hook.adding_bullet(pad .. '░ ', false),
           starter.gen_hook.aligning('center', 'center'),
         },
+        query_updaters = 'abcdefghijklmnopqrstuvwxyz0123456789_.',
       }
 
       require('mini.starter').setup(starterconfig)
