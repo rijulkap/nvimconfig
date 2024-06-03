@@ -18,9 +18,6 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz')
 vim.keymap.set('n', 'n', 'nzzzv')
 vim.keymap.set('n', 'N', 'Nzzzv')
 
-vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz')
-vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz')
-
 vim.keymap.set('n', '<leader>bb', function()
   local curbufnr = vim.api.nvim_get_current_buf()
   local buflist = vim.api.nvim_list_bufs()
