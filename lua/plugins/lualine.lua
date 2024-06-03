@@ -83,6 +83,48 @@ return {
       },
     },
     config = function(_, opts)
+      local virtual_env = function()
+        -- only show virtual env for Python
+        if vim.bo.filetype ~= 'python' then
+          return ''
+        end
+
+        local conda_env = os.getenv 'CONDA_DEFAULT_ENV'
+        local venv_path = os.getenv 'VIRTUAL_ENV'
+
+        if venv_path == nil then
+          if conda_env == nil then
+            return ''
+          else
+            return string.format('%s (conda)', conda_env)
+          end
+        else
+          local venv_name = vim.fn.fnamemodify(venv_path, ':t')
+          return string.format('%s (venv)', venv_name)
+        end
+      end
+
+      local trouble = require 'trouble'
+      local symbols = trouble.statusline {
+        mode = 'lsp_document_symbols',
+        groups = {},
+        title = false,
+        filter = { range = true },
+        format = '{kind_icon}{symbol.name:Normal}',
+        -- The following line is needed to fix the background color
+        -- Set it to the lualine section you want to use
+        hl_group = 'lualine_c_normal',
+      }
+
+      table.insert(opts.sections.lualine_c, {
+        virtual_env,
+      })
+
+      table.insert(opts.sections.lualine_c, {
+        symbols.get,
+        cond = symbols.has,
+      })
+
       require('lualine').setup(opts)
     end,
   },
