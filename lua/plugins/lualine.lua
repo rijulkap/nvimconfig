@@ -48,7 +48,32 @@ return {
           { 'filetype', icon_only = true, separator = '', padding = { left = 1, right = 0 } },
         },
         lualine_x = {
-          'diff',
+          {
+            function()
+              return '  ' .. require('dap').status()
+            end,
+            cond = function()
+              return package.loaded['dap'] and require('dap').status() ~= ''
+            end,
+          },
+          {
+            'diff',
+            symbols = {
+              added = ' ',
+              modified = ' ',
+              removed = ' ',
+            },
+            source = function()
+              local gitsigns = vim.b.gitsigns_status_dict
+              if gitsigns then
+                return {
+                  added = gitsigns.added,
+                  modified = gitsigns.changed,
+                  removed = gitsigns.removed,
+                }
+              end
+            end,
+          },
         },
         lualine_y = {
           { 'progress', separator = ' ', padding = { left = 1, right = 0 } },
