@@ -3,18 +3,13 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     opts = {
-      size = function(term)
-        if term.direction == 'horizontal' then
-          return 15
-        elseif term.direction == 'vertical' then
-          return vim.o.columns * 0.4
-        end
-      end,
       autochdir = true,
       hide_numbers = true,
       close_on_exit = true,
       shell = vim.o.shell,
       auto_scroll = true,
+      persist_mode = true,
+      persist_size = true,
       float_opts = {
         border = 'curved',
       },
@@ -30,11 +25,11 @@ return {
       local float = Terminal:new { direction = 'float' }
 
       vim.keymap.set({ 'n', 't' }, '<A-1>', function()
-        bot:toggle()
+        bot:toggle(15)
       end)
 
       vim.keymap.set({ 'n', 't' }, '<A-2>', function()
-        side:toggle()
+        side:toggle(vim.o.columns * 0.4)
       end)
 
       vim.keymap.set({ 'n', 't' }, '<A-3>', function()

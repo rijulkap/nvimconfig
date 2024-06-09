@@ -2,7 +2,7 @@ return {
   {
     -- NOTE: Yes, you can install new plugins here!
     'mfussenegger/nvim-dap',
-    -- NOTE: And you can specify dependencies as well
+    ft = { 'rust', 'cpp', 'c' },
     dependencies = {
       -- Creates a beautiful debugger UI
       'rcarriga/nvim-dap-ui',
