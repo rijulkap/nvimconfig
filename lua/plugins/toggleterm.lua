@@ -3,6 +3,7 @@ return {
     'akinsho/toggleterm.nvim',
     version = '*',
     opts = {
+      open_mapping = [[<c-\>]],
       autochdir = true,
       hide_numbers = true,
       close_on_exit = true,
