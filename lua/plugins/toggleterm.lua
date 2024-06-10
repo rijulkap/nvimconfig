@@ -11,6 +11,7 @@ return {
       auto_scroll = true,
       persist_mode = true,
       persist_size = true,
+      direction = 'float',
       float_opts = {
         border = 'curved',
       },
