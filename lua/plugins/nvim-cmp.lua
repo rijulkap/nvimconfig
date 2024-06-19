@@ -1,17 +1,15 @@
 return {
-
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
     },
-    config = function()
-      -- See `:help cmp`
+
+    opts = function()
       local cmp = require 'cmp'
-      cmp.setup {
+      return {
         completion = { completeopt = 'menu,menuone,noinsert,noselect' },
         preselect = cmp.PreselectMode.None,
         mapping = cmp.mapping.preset.insert {
@@ -22,10 +20,9 @@ return {
           ['<CR>'] = cmp.mapping.confirm { select = true },
           ['<C-Space>'] = cmp.mapping.complete {},
         },
-        sources = {
-          { name = 'copilot' },
-          { name = 'nvim_lsp' },
+        sources = cmp.config.sources {
           { name = 'path' },
+          { name = 'nvim_lsp' },
         },
       }
     end,
