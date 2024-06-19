@@ -5,8 +5,6 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-
-      { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
       local capabilities = vim.lsp.protocol.make_client_capabilities()

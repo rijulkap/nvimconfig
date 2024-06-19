@@ -20,14 +20,15 @@ return {
         end,
       },
     },
-    config = function(_, opts)
+    opts = function(_, opts)
+      if opts.sources == nil then
+        opts.sources = {}
+      end
       table.insert(opts.sources, 1, {
         name = 'copilot',
         group_index = 1,
         priority = 100,
       })
-
-      require('cmp').setup(opts)
     end,
   },
 }

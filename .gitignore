@@ -6,4 +6,4 @@ nvim
 spell/
 lazy-lock.json
 
-./lua/plugins/copilot.lua
+lua/plugins/copilot.lua
