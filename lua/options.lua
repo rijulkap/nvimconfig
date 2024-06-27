@@ -26,3 +26,4 @@ vim.opt.showcmd = false
 vim.opt.clipboard = 'unnamedplus'
 vim.opt.shortmess = 'I'
 vim.opt.confirm = true
+vim.opt.cursorline = true
