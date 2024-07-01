@@ -18,7 +18,8 @@ return {
             exportPdf = 'never', -- Choose onType, onSave or never.
           },
         },
-        pyright = {},
+        basedpyright = {},
+        ruff_lsp = {},
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
@@ -82,6 +83,12 @@ return {
           map('<leader>lc', vim.lsp.buf.code_action, '[l]sp [C]ode Action')
           -- map('K', vim.lsp.buf.hover, 'Hover Documentation')
           map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+
+          local client = vim.lsp.get_client_by_id(event.data.client_id)
+          if client.name == 'ruff_lsp' then
+            -- Disable hover in favor of Pyright
+            client.server_capabilities.hoverProvider = false
+          end
 
           -- When you move your cursor, the highlights will be cleared (the second autocommand).
           -- local client = vim.lsp.get_client_by_id(event.data.client_id)
